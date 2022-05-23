@@ -1,0 +1,264 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": false,
+      "segments": [
+        {
+          "properties": {
+            "template": "<p:angular-basecolor>\ue753</> <p:angular-highlight>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}</> "
+          },
+          "style": "plain",
+          "type": "angular"
+        },
+        {
+          "properties": {
+            "template": "<p:dotnet-basecolor>\ue77f</> <p:dotnet-highlight>{{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}</> "
+          },
+          "style": "plain",
+          "type": "dotnet"
+        },
+        {
+          "properties": {
+            "template": "<p:java-basecolor>\ue738</> <p:java-highlight>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}</> "
+          },
+          "style": "plain",
+          "type": "java"
+        },        {
+          "properties": {
+            "template": "<p:node-basecolor>\uf898</> <p:node-highlight>{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }}{{ end }}{{ .Full }}</> "
+          },
+          "style": "plain",
+          "type": "node"
+        },
+        {
+          "properties": {
+            "fetch_version": true,
+            "template": "<p:python-basecolor>\ue235</> <p:python-highlight>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }} {{ if .Venv }}{{ .Venv }}{{ end }}{{ end }}</> "
+          },
+          "style": "plain",
+          "type": "python"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "newline": false,
+      "segments": [
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "\ufa1a"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "always_enabled": true,
+            "template": "{{.FormattedMs }} "
+          },
+          "style": "diamond",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "\uf2c0"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "template": " {{ .UserName }} "
+          },
+          "style": "diamond",
+          "type": "session"
+        },
+        {
+          "foreground": "p:red",
+          "properties": {
+            "template": "\u26a1"
+          },
+          "style": "plain",
+          "type": "root"
+        },
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "\ue7a2"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "template": " {{ .Name }} "
+          },
+          "style": "plain",
+          "type": "shell"
+        },
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "@"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "alpine": "\uf300",
+            "arch": "\uf303",
+            "centos": "\uf304",
+            "debian": "\uf306",
+            "elementary": "\uf309",
+            "fedora": "\uf30a",
+            "gentoo": "\uf30d",
+            "linux": "\ue712",
+            "macos": "\ue711",
+            "manjaro": "\uf312",
+            "mint": "\uf30f",
+            "opensuse": "\uf314",
+            "raspbian": "\uf315",
+            "template": " {{ if .WSL }}WSL {{ end }}{{.Icon}} ",
+            "ubuntu": "\uf31c",
+            "windows": "\ue62a",
+            "wsl": "\ue712"
+          },
+          "style": "plain",
+          "type": "os"
+        },
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "\ufcbe"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "template": " {{ .HostName }} "
+          },
+          "style": "diamond",
+          "type": "session"
+        },
+        {
+          "foreground": "p:label",
+          "properties": {
+            "template": "\uf64f"
+          },
+          "style": "plain",
+          "type": "text"
+        },
+        {
+          "foreground": "p:system-foreground",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "plain",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:path-foreground",
+          "properties": {
+            "style": "full",
+            "template": "{{ .Path }} "
+          },
+          "style": "plain",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "newline": false,
+      "segments": [
+        {
+          "foreground": "p:git",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:git-modified{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git-diverged{{ end }}",
+            "{{ if gt .Ahead 0 }}p:git-ahead{{ end }}",
+            "{{ if gt .Behind 0 }}p:git-behind{{ end }}"
+          ],
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_worktree_count": false,
+            "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} <p:git-unstaged>\uf044 {{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }}{{ end }}{{ if .Staging.Changed }} <p:git-added>\uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0}} <p:git-stashed>\uf692 {{ .StashCount }}</>{{ end }}{{ if gt .WorktreeCount 0}} <p:git-worktree>\uf1bb {{ .WorktreeCount }}</>{{ end }} "
+          },
+          "style": "plain",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:prompt",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}red{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true,
+            "template": "\u276f"
+          },
+          "style": "plain",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title": true,
+  "final_space": true,
+  "palette": {
+    "angular-basecolor": "#ce092f",
+    "angular-highlight": "white",
+    "dotnet-basecolor": "#4D38D0",
+    "dotnet-highlight": "white",
+    "git": "green",
+    "git-added": "green",
+    "git-ahead": "lightCyan",
+    "git-behind": "lightMagenta",
+    "git-diverged": "lightRed",
+    "git-modified": "yellow",
+    "git-stashed": "yellow",
+    "git-worktree": "darkGray",
+    "git-unstaged": "red",
+    "java-basecolor": "#ec2729",
+    "java-highlight": "white",
+    "label": "darkGray",
+    "node-basecolor": "#026E00",
+    "node-highlight": "white",
+    "path-foreground": "lightBlue",
+    "prompt": "lightGreen",
+    "python-basecolor": "#3E6F9B",
+    "python-highlight": "#FACD4F",
+    "system-foreground": "green"
+  },
+  "terminal_background": "black",
+  "version": 1
+}
